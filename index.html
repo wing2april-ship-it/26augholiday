@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杨总 · 香港亲子游 2026</title>
+    <style>
+        /* ===== 全局重置 & 基础 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+            background: #f5f1ea;
+            color: #1e2b3a;
+            line-height: 1.6;
+            padding: 0 0 40px 0;
+        }
+
+        /* ===== 顶部 Hero ===== */
+        .hero {
+            background: linear-gradient(145deg, #142b44 0%, #1f4a6e 50%, #2a6a8a 100%);
+            color: #fff;
+            padding: 48px 24px 36px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -60%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 168, 75, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero::before {
+            content: '✦';
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+            font-size: 80px;
+            opacity: 0.06;
+            color: #d4a84b;
+        }
+        .hero h1 {
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero h1 span {
+            color: #d4a84b;
+        }
+        .hero .sub {
+            font-size: 16px;
+            opacity: 0.85;
+            margin-top: 8px;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .sub em {
+            font-style: normal;
+            background: rgba(212, 168, 75, 0.2);
+            padding: 0 10px;
+            border-radius: 12px;
+        }
+        .hero .date-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .date-tabs button {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
+            font-family: inherit;
+            letter-spacing: 0.5px;
+        }
+        .hero .date-tabs button:hover {
+            background: rgba(212, 168, 75, 0.3);
+            border-color: #d4a84b;
+            transform: translateY(-2px);
+        }
+        .hero .date-tabs button.active {
+            background: #d4a84b;
+            color: #142b44;
+            border-color: #d4a84b;
+            font-weight: 600;
+        }
+
+        /* ===== 主容器 ===== */
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 18px;
+        }
+
+        /* ===== 每日 Section ===== */
+        .day-section {
+            margin-top: 32px;
+            background: #fff;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .day-section:hover {
+            box-shadow: 0 8px 36px rgba(0, 0, 0, 0.10);
+        }
+
+        .day-header {
+            padding: 20px 28px 16px;
+            border-bottom: 2px solid #f0ebe2;
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 6px 16px;
+            background: #faf8f5;
+        }
+        .day-header .day-label {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e2b3a;
+        }
+        .day-header .day-label small {
+            font-weight: 400;
+            font-size: 15px;
+            color: #7a8896;
+            margin-left: 6px;
+        }
+        .day-header .day-badge {
+            background: #d4a84b;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 2px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            margin-left: auto;
+        }
+
+        /* ===== 时间线 ===== */
+        .timeline {
+            padding: 12px 12px 16px 12px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 14px;
+            padding: 12px 14px 12px 10px;
+            border-radius: 16px;
+            transition: background 0.2s;
+            cursor: pointer;
+            position: relative;
+            border-left: 3px solid transparent;
+        }
+        .timeline-item:hover {
+            background: #f8f5ef;
+        }
+        .timeline-item.active {
+            background: #f8f5ef;
+            border-left-color: #d4a84b;
+        }
+
+        /* 时间标签 */
+        .timeline-item .time-tag {
+            flex: 0 0 76px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e2b3a;
+            padding-top: 2px;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: flex-start;
+            gap: 4px;
+        }
+        .timeline-item .time-tag .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #d4a84b;
+            flex-shrink: 0;
+            margin-top: 6px;
+            margin-right: 4px;
+            box-shadow: 0 0 0 3px rgba(212, 168, 75, 0.2);
+        }
+
+        /* 内容区 */
+        .timeline-item .content-wrap {
+            flex: 1;
+            min-width: 0;
+        }
+        .timeline-item .title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #142b44;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .timeline-item .title .icon {
+            font-size: 18px;
+        }
+        .timeline-item .brief {
+            font-size: 14px;
+            color: #6b7a8a;
+            margin-top: 2px;
+            line-height: 1.5;
+        }
+
+        /* 详情 (默认收起) */
+        .timeline-item .details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s ease, opacity 0.35s ease, margin 0.3s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+        .timeline-item .details.open {
+            max-height: 600px;
+            opacity: 1;
+            margin-top: 12px;
+        }
+
+        .timeline-item .details-inner {
+            background: #f5f1ea;
+            border-radius: 14px;
+            padding: 16px 20px;
+            border-left: 3px solid #d4a84b;
+            font-size: 14px;
+            color: #2a3b4e;
+            line-height: 1.7;
+        }
+        .timeline-item .details-inner .row {
+            display: flex;
+            gap: 6px;
+            align-items: flex-start;
+            margin-top: 4px;
+        }
+        .timeline-item .details-inner .row:first-child {
+            margin-top: 0;
+        }
+        .timeline-item .details-inner .label {
+            font-weight: 600;
+            color: #1e2b3a;
+            flex-shrink: 0;
+            width: 52px;
+        }
+        .timeline-item .details-inner .value {
+            color: #2a3b4e;
+        }
+        .timeline-item .details-inner .value a {
+            color: #1f4a6e;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(31, 74, 110, 0.3);
+        }
+        .timeline-item .details-inner .value a:hover {
+            border-bottom-color: #1f4a6e;
+        }
+        .timeline-item .details-inner .tip {
+            background: #e8e1d6;
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-top: 8px;
+            color: #1e2b3a;
+            font-size: 13.5px;
+        }
+        .timeline-item .details-inner .tip strong {
+            color: #142b44;
+        }
+
+        /* 展开/收起 指示器 */
+        .timeline-item .toggle-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            color: #7a8896;
+            margin-top: 6px;
+            font-weight: 500;
+            transition: color 0.2s;
+            user-select: none;
+        }
+        .timeline-item .toggle-indicator:hover {
+            color: #142b44;
+        }
+        .timeline-item .toggle-indicator .arrow {
+            display: inline-block;
+            transition: transform 0.35s ease;
+            font-size: 14px;
+        }
+        .timeline-item .toggle-indicator .arrow.open {
+            transform: rotate(180deg);
+        }
+
+        /* ===== 特殊标注 ===== */
+        .badge-warn {
+            display: inline-block;
+            background: #e85a4f;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 0 10px;
+            border-radius: 12px;
+            line-height: 22px;
+            margin-left: 6px;
+        }
+        .badge-tip {
+            display: inline-block;
+            background: #d4a84b;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 0 10px;
+            border-radius: 12px;
+            line-height: 20px;
+            margin-left: 6px;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            text-align: center;
+            margin-top: 44px;
+            padding: 20px 16px 10px;
+            color: #8a9aa8;
+            font-size: 13px;
+            border-top: 1px solid #e8e1d6;
+            max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .footer span {
+            color: #d4a84b;
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 26px;
+            }
+            .hero .sub {
+                font-size: 14px;
+            }
+            .hero .date-tabs button {
+                padding: 6px 16px;
+                font-size: 13px;
+            }
+            .day-header {
+                padding: 16px 18px 12px;
+            }
+            .day-header .day-label {
+                font-size: 18px;
+            }
+            .timeline {
+                padding: 6px 4px 10px;
+            }
+            .timeline-item {
+                flex-direction: column;
+                gap: 4px;
+                padding: 10px 12px;
+                border-left: none;
+                border-radius: 12px;
+            }
+            .timeline-item .time-tag {
+                flex: none;
+                font-size: 13px;
+                padding-top: 0;
+                align-items: center;
+                gap: 6px;
+                width: 100%;
+            }
+            .timeline-item .time-tag .dot {
+                margin-top: 0;
+                width: 8px;
+                height: 8px;
+            }
+            .timeline-item .title {
+                font-size: 16px;
+            }
+            .timeline-item .details-inner {
+                padding: 14px 16px;
+                font-size: 13.5px;
+            }
+            .timeline-item .details-inner .label {
+                width: 44px;
+                font-size: 13px;
+            }
+            .container {
+                padding: 0 12px;
+            }
+            .day-section {
+                border-radius: 18px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 22px;
+            }
+            .timeline-item .title {
+                font-size: 15px;
+            }
+            .timeline-item .brief {
+                font-size: 13px;
+            }
+            .day-header .day-badge {
+                font-size: 11px;
+                padding: 0 10px;
+                margin-left: 0;
+                width: 100%;
+                margin-top: 4px;
+            }
+        }
+
+        /* ===== 工具类 ===== */
+        .mt-1 {
+            margin-top: 4px;
+        }
+        .text-gold {
+            color: #d4a84b;
+        }
+        .fw-600 {
+            font-weight: 600;
+        }
+
+        /* ===== 滚动条美化 ===== */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0ebe2;
+            border-radius: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c4b5a0;
+            border-radius: 6px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b0a08a;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero" id="top">
+        <h1>杨总 · 香港<span>亲子游</span> 2026</h1>
+        <p class="sub">
+            8月12日 – 8月14日 &nbsp;·&nbsp; <em>记得必须带外套和雨伞</em>
+        </p>
+        <div class="date-tabs">
+            <button class="active" data-day="0">📅 第一天 · 8/12</button>
+            <button data-day="1">📅 第二天 · 8/13</button>
+            <button data-day="2">📅 第三天 · 8/14</button>
+        </div>
+    </header>
+
+    <!-- ===== 主容器 ===== -->
+    <div class="container" id="app">
+        <!-- 由 JS 动态渲染 -->
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footer">
+        杨总 · 香港亲子游 2026 &nbsp;<span>✦</span>&nbsp; 祝旅途愉快！
+    </div>
+
+    <script>
+        // ============================================================
+        //  数据
+        // ============================================================
+        const tripData = [{
+            day: '第一天',
+            date: '8月12日',
+            weekday: '周三',
+            items: [{
+                time: '上午',
+                icon: '🚄',
+                title: '高铁抵达 · 朗廷酒店入住及午餐',
+                brief: '办理入住，寄存行李后午餐，稍作休整。',
+                address: '香港尖沙咀北京道8号',
+                hours: '入住时间 15:00 后（可提前寄存行李）',
+                tip: '提前联系酒店确认入住时间，若房间未准备好可先寄存行李，在酒店餐厅或附近用午餐。'
+            }, {
+                time: '14:00',
+                icon: '🌟',
+                title: '星光大道 → K11 MUSEA',
+                brief: '漫步星光大道，欣赏维港景色，随后前往 LEGOLAND。',
+                address: '尖沙咀梳士巴利道18号 K11 MUSEA B1层',
+                hours: '11:00 – 20:00',
+                tip: '星光大道步行至 K11 MUSEA 约 10 分钟。LEGOLAND 适合亲子互动，建议提前网上购票。如果不想玩可以到3楼逛逛，或者提早去太空馆。'
+            }, {
+                time: '17:00',
+                icon: '🌌',
+                title: '香港太空馆 · 球幕电影',
+                brief: '下午五点球幕电影专场，沉浸式宇宙探索，观影后继续参观展览厅。',
+                address: '尖沙咀梳士巴利道10号',
+                hours: '13:00 – 21:00（周三）｜球幕电影 17:00 场',
+                tip: '🎬 重点安排：下午五点（17:00）球幕电影，建议提前网上购票选座。电影时长约40分钟，结束后可继续游览馆内互动展品，非常适合两位中学生男孩。'
+            }, {
+                time: '傍晚',
+                icon: '⛴️',
+                title: '天星小轮 → 中环街市（晚餐）',
+                brief: '乘坐天星小轮横渡维港，到中环街市寻觅美食。',
+                address: '尖沙咀码头 → 中环码头',
+                hours: '天星小轮 06:30 – 23:30',
+                tip: '天星小轮是香港百年特色交通工具，上层视野更好。中环街市有众多地道小吃和餐厅，晚餐选择丰富。'
+            }, {
+                time: '晚上',
+                icon: '🚠',
+                title: '山顶缆车 · 夜景',
+                brief: '乘坐山顶缆车登太平山，俯瞰香港璀璨夜景。',
+                address: '中环花园道33号',
+                hours: '07:00 – 22:00',
+                tip: '建议提前购买山顶缆车票（可网上预订），避免排队。夜景最佳观赏时间为 19:30 后，山顶凌霄阁观景台视野极佳。'
+            }, {
+                time: '21:00',
+                icon: '🎡',
+                title: 'AIA 摩天轮 → 返回尖沙咀',
+                brief: '体验中环海滨摩天轮，之后乘船返回酒店。',
+                address: '中环民光街33号',
+                hours: '11:00 – 23:00',
+                tip: '摩天轮一圈约 15–20 分钟，可俯瞰维港夜景。结束后步行至中环码头乘天星小轮返回尖沙咀。'
+            }]
+        }, {
+            day: '第二天',
+            date: '8月13日',
+            weekday: '周四',
+            items: [{
+                time: '早上8:30',
+                icon: '🚇',
+                title: '地铁前往迪士尼乐园',
+                brief: '早上Phoebe带你们去吃地道街坊早餐，再搭乘港铁迪士尼线，开园前 5 分钟到达。',
+                address: '港铁迪士尼线',
+                hours: '开园时间 10:00',
+                tip: '⚠️ 迪士尼不能带食物入园！建议轻装出行。提前下载「香港迪士尼」App，可查看地图、排队时间及演出安排。'
+            }, {
+                time: '10:00 – 20:00',
+                icon: '🏰',
+                title: '香港迪士尼乐园（全天）',
+                brief: '畅玩一整天，午餐和下午茶在园内解决。',
+                address: '大屿山 香港迪士尼乐园',
+                hours: '10:00 – 20:30（烟花约 20:00）',
+                tip: '🎯 推荐项目：灰熊山极速矿车（刺激过山车）、星战极速穿梭（室内黑暗过山车）、铁甲奇侠飞行之旅（4D 体验）。\n🍔 午餐可选：皇室宴会厅（西式）、笑匠欢宴坊（中式）。\n🎆 烟花表演约 20:00 开始，建议提前 30 分钟占位。'
+            }, {
+                time: '20:30',
+                icon: '🍜',
+                title: '翠华餐厅 · 晚餐（Phoebe 带路）',
+                brief: '由 Phoebe 带大家品尝地道港式茶餐厅美食。',
+                address: '尖沙咀加拿分道2号地下',
+                hours: '24 小时营业',
+                tip: '推荐：奶油猪仔包（必点！）、咖喱牛腩饭、冻奶茶。翠华是香港老牌茶餐厅，氛围地道。'
+            }, {
+                time: '晚上',
+                icon: '🍨',
+                title: '甜品（可选）→ 回酒店',
+                brief: '视大家胃口决定是否再加一顿甜品。',
+                address: '尖沙咀附近甜品店（许留山 / 满记甜品 等）',
+                hours: '视具体店铺而定',
+                tip: '若还有战斗力，可尝试满记的杨枝甘露或附近的甜品店。吃完后步行回酒店休息。'
+            }]
+        }, {
+            day: '第三天',
+            date: '8月14日',
+            weekday: '周五',
+            items: [{
+                time: '早上',
+                icon: '🥢',
+                title: '莲香楼 · 饮茶',
+                brief: '体验地道港式早茶，老字号茶楼。',
+                address: '尖沙咀弥敦道74-78号文逊大厦地下',
+                hours: '06:00 – 23:00',
+                tip: '老字号茶楼，保留传统推车点心。推荐：虾饺、烧卖、叉烧包、凤爪。早点去可体验热闹的早茶氛围。'
+            }, {
+                time: '10:00 – 12:30',
+                icon: '🏛️',
+                title: '香港历史博物馆',
+                brief: '了解香港从古至今的历史故事。',
+                address: '尖沙咀漆咸道南100号',
+                hours: '10:00 – 18:00（周五）',
+                tip: '常设展览「香港故事」非常精彩，通过文物、场景还原展现香港历史变迁。预留 2–2.5 小时参观。'
+            }, {
+                time: '12:30 – 14:00',
+                icon: '🍽️',
+                title: '午餐（博物馆附近）',
+                brief: '在历史博物馆附近用午餐，稍作休息。',
+                address: '尖沙咀漆咸道南 / 加连威老道 一带',
+                hours: '——',
+                tip: '附近餐厅选择丰富：有茶餐厅、日式料理、越南粉等。推荐「华嫂冰室」或「一兰拉面」（尖沙咀分店）。'
+            }, {
+                time: '14:00 – 17:00',
+                icon: '🔬',
+                title: '香港科学馆',
+                brief: '互动式科学体验，适合青少年探索。',
+                address: '尖沙咀科学馆道2号',
+                hours: '10:00 – 19:00（周五）',
+                tip: '互动性极强！推荐：能量穿梭机（巨型机械装置）、镜中世界（光学迷宫）、磁电廊。两个男孩子一定会玩得很开心。'
+            }, {
+                time: '17:00 – 18:00',
+                icon: '🛍️',
+                title: '妈妈购物时间',
+                brief: '尖沙咀海港城或附近药妆店自由购物。',
+                address: '尖沙咀海港城（广东道3-27号）',
+                hours: '10:00 – 22:00',
+                tip: '尖沙咀是香港最大购物区，品牌齐全。建议提前列好购物清单。'
+            }, {
+                time: '18:00 后',
+                icon: '🚅',
+                title: '晚餐 → 高铁回程',
+                brief: '享用晚餐后前往高铁站，结束愉快旅程。',
+                address: '尖沙咀附近餐厅 → 高铁西九龙站',
+                hours: '——',
+                tip: '晚餐看看想吃什么，可以试试泰国菜或是韩国菜，之后乘地铁或打车前往高铁西九龙站，预留充裕时间过关。'
+            }]
+        }];
+
+        // ============================================================
+        //  渲染
+        // ============================================================
+        const app = document.getElementById('app');
+
+        function render() {
+            let html = '';
+            tripData.forEach((dayData, dayIdx) => {
+                const itemsHtml = dayData.items.map((item, idx) => {
+                    const itemId = `d${dayIdx}-i${idx}`;
+                    // 处理 tip 中的换行
+                    const tipLines = item.tip ? item.tip.split('\n').map(line => line.trim()).filter(Boolean) : [];
+                    const tipHtml = tipLines.length ? tipLines.map(line =>
+                        `<div>${line}</div>`
+                    ).join('') : '';
+
+                    return `
+                        <div class="timeline-item" data-id="${itemId}" onclick="toggleDetail('${itemId}')">
+                            <div class="time-tag">
+                                <span class="dot"></span>
+                                <span>${item.time}</span>
+                            </div>
+                            <div class="content-wrap">
+                                <div class="title">
+                                    <span class="icon">${item.icon}</span>
+                                    ${item.title}
+                                    ${item.title.includes('迪士尼') ? '<span class="badge-warn">⚠️ 禁带食物</span>' : ''}
+                                    ${item.title.includes('球幕电影') ? '<span class="badge-tip">🎬 17:00场</span>' : ''}
+                                    ${item.title.includes('山顶缆车') ? '<span class="badge-tip">🌃 必看</span>' : ''}
+                                </div>
+                                <div class="brief">${item.brief}</div>
+                                <div class="details" id="details-${itemId}">
+                                    <div class="details-inner">
+                                        <div class="row">
+                                            <span class="label">📍 地址</span>
+                                            <span class="value">${item.address}</span>
+                                        </div>
+                                        <div class="row">
+                                            <span class="label">🕐 时间</span>
+                                            <span class="value">${item.hours}</span>
+                                        </div>
+                                        ${tipHtml ? `
+                                        <div class="tip">
+                                            <strong>💡 攻略</strong>
+                                            ${tipHtml}
+                                        </div>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                                <div class="toggle-indicator" id="indicator-${itemId}">
+                                    <span>查看详情</span>
+                                    <span class="arrow">▾</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                html += `
+                    <section class="day-section" id="day-${dayIdx}">
+                        <div class="day-header">
+                            <span class="day-label">
+                                ${dayData.day} · ${dayData.date}
+                                <small>${dayData.weekday}</small>
+                            </span>
+                            <span class="day-badge">${dayData.items.length} 个行程点</span>
+                        </div>
+                        <div class="timeline">
+                            ${itemsHtml}
+                        </div>
+                    </section>
+                `;
+            });
+            app.innerHTML = html;
+        }
+
+        // ============================================================
+        //  交互：展开 / 收起
+        // ============================================================
+        let openItems = new Set();
+
+        function toggleDetail(id) {
+            const details = document.getElementById(`details-${id}`);
+            const indicator = document.getElementById(`indicator-${id}`);
+            if (!details || !indicator) return;
+
+            const isOpen = openItems.has(id);
+            if (isOpen) {
+                openItems.delete(id);
+                details.classList.remove('open');
+                indicator.querySelector('.arrow').classList.remove('open');
+                indicator.querySelector('span:first-child').textContent = '查看详情';
+            } else {
+                openItems.add(id);
+                details.classList.add('open');
+                indicator.querySelector('.arrow').classList.add('open');
+                indicator.querySelector('span:first-child').textContent = '收起详情';
+            }
+        }
+
+        // ============================================================
+        //  导航 Tabs 滚动
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', function() {
+            render();
+
+            // 导航按钮
+            const tabs = document.querySelectorAll('.date-tabs button');
+            tabs.forEach((btn, idx) => {
+                btn.addEventListener('click', function() {
+                    tabs.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    const target = document.getElementById(`day-${idx}`);
+                    if (target) {
+                        const topOffset = target.getBoundingClientRect().top + window.pageYOffset - 70;
+                        window.scrollTo({ top: topOffset, behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // 默认打开第一个行程点（第一天第一个）
+            setTimeout(() => {
+                const firstItem = document.querySelector('.timeline-item');
+                if (firstItem) {
+                    const id = firstItem.dataset.id;
+                    if (id) toggleDetail(id);
+                }
+            }, 300);
+        });
+
+        // 暴露 toggleDetail 给全局
+        window.toggleDetail = toggleDetail;
+    </script>
+
+</body>
+</html>
